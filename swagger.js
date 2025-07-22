@@ -5,10 +5,10 @@ const doc = {
     title: 'Pizza Review App',
     description: 'Use GitHub login to review and favorite pizzas'
   },
-  host: 'cse341pizza.onrender.com',
-  schemes: ['https'],
-  // host: 'localhost:3000',
-  // schemes: ['http'],
+  // host: 'cse341pizza.onrender.com',
+  // schemes: ['https'],
+  host: 'localhost:3000',
+  schemes: ['http'],
   securityDefinitions: {
     JWT: {
       type: 'apiKey',
