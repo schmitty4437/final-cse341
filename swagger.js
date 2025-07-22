@@ -7,6 +7,8 @@ const doc = {
   },
   host: 'final-cse341.onrender.com',
   schemes: ['https'],
+  // host: 'localhost:3000',
+  // schemes: ['http'],
   securityDefinitions: {
     JWT: {
       type: 'apiKey',
