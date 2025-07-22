@@ -19,7 +19,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Parse incoming JSON request bodies
+// Parse JSON request bodies
 app.use(express.json());
 
 // Passport for GitHub OAuth
@@ -33,13 +33,13 @@ app.use('/reviews', reviewsRouter);
 app.use('/pizzas', pizzasRouter);
 app.use('/favorites', favoritesRouter);
 
-// Global error
-app.use((err, req, res) => {
+// Global error handler
+app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
   res.status(500).json({ error: 'Internal server error' });
 });
 
-// Server starts when db is connected
+// Start server after DB connection
 connectDb()
   .then(() => {
     app.listen(port, () => {

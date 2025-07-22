@@ -2,24 +2,20 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const usersController = require('../controllers/users');
-const {
-  logoutValidation,
-  createUserValidation,
-  loginValidation
-} = require('../validators/usersValidator');
+const { logoutValidation, createUserValidation } = require('../validators/usersValidator');
 
-/***************************** 
-Route to get all users or search by username
+/*****************************
+ Route to get all users or search by username
 ******************************/
 router.get('/', usersController.searchUsers);
 
-/***************************** 
-Route to start GitHub login
+/*****************************
+ Route to start GitHub login
 ******************************/
 router.get('/github', passport.authenticate('github'));
 
-/***************************** 
-Route to handle GitHub callback
+/*****************************
+ Route to handle GitHub callback
 ******************************/
 router.get(
   '/github/callback',
@@ -27,19 +23,14 @@ router.get(
   usersController.githubCallback
 );
 
-/***************************** 
-Route to logout
+/*****************************
+ Route to logout
 ******************************/
 router.get('/logout', logoutValidation, usersController.logout);
 
-/***************************** 
-Route to create a new user
+/*****************************
+ Route to create a new user (optional, for non-OAuth registration)
 ******************************/
 router.post('/', createUserValidation, usersController.createUser);
-
-/***************************** 
-Route to login user
-******************************/
-router.post('/login', loginValidation, usersController.login);
 
 module.exports = router;

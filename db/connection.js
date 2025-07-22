@@ -1,15 +1,10 @@
 const { MongoClient } = require('mongodb');
 
-// Get variable from .env file
 const uri = process.env.MONGODB_URI;
-// Include debug log to verify URI
-console.log('MONGODB_URI:', process.env.MONGODB_URI);
 const client = new MongoClient(uri);
 
-// Store db connection
 let dbConnection;
 
-// Function to connect to db
 const connectDb = async () => {
   if (dbConnection) {
     console.log('Using existing MongoDB connection');

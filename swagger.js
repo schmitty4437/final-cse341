@@ -3,12 +3,10 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     title: 'Pizza Review App',
-    description: 'Use GitHub login to review and favorite pizzas'
+    description: 'Use GitHub login to manage pizza reviews and favorites'
   },
-  // host: 'cse341pizza.onrender.com',
-  // schemes: ['https'],
-  host: 'localhost:3000',
-  schemes: ['http'],
+  host: 'pizza-review-app.onrender.com',
+  schemes: ['https'],
   securityDefinitions: {
     JWT: {
       type: 'apiKey',
@@ -17,7 +15,6 @@ const doc = {
       description: 'JWT token stored in cookie'
     }
   },
-  // Added JWT to protected routes
   security: [{ JWT: [] }],
   definitions: {
     Pizza: {
@@ -30,11 +27,11 @@ const doc = {
     Review: {
       userId: 'string',
       pizzaId: 'string',
-      rating: 'integer',
+      rating: 'number',
       commentReview: 'string',
       createdDate: 'string',
       updatedDate: 'string',
-      priceRating: 'integer'
+      priceRating: 'number'
     },
     Favorite: {
       pizzaId: 'string',
@@ -45,13 +42,9 @@ const doc = {
     User: {
       username: 'string',
       email: 'string',
-      oAuth: 'string',
+      githubId: 'string',
       createdDate: 'string',
       updatedDate: 'string'
-    },
-    Login: {
-      email: 'string',
-      password: 'string'
     }
   }
 };
@@ -59,8 +52,8 @@ const doc = {
 const outputFile = './swagger.json';
 const routes = [
   './routes/index.js',
-  './routes/pizzas.js',
   './routes/reviews.js',
+  './routes/pizzas.js',
   './routes/favorites.js',
   './routes/users.js'
 ];

@@ -1,120 +1,241 @@
-//LOCALHOST
-
-### 
-GET http://localhost:3000 HTTP/1.1
-
-###
-GET http://localhost:3000/pizza HTTP/1.1
-
-###
-GET http://localhost:3000/pizza/68601b0c914598c7bb96b045 HTTP/1.1
-
-###
-# POST
-POST http://localhost:3000/pizza HTTP/1.1
-Content-Type: application/json
-
-{
-    "name": "",
-    "brand" : "",
-    "description" : "",
-    "createdDate" : "",
-    "updatedDate" : "",
-}
-
-###
-# PUT
-PUT http://localhost:3000/pizza/# HTTP/1.1
-Content-Type: application/json
-
-{
-    "name": "",
-    "brand" : "",
-    "description" : "",
-    "createdDate" : "",
-    "updatedDate" : "",
-}
-
-###
-# DELETE
-DELETE http://localhost:3000/pizza/# HTTP/1.1
-
-
-//GET ALL REVIEWS
+// LOCALHOST
+// GET all reviews, pizzas, and favorites
 ###
 GET http://localhost:3000/reviews HTTP/1.1
-
-
-// Get review by id
 ###
-GET http://localhost:3000/reviews/686edd0d36eac74bb7b56553 HTTP/1.1
-
-
-// Create/POST new review
-###
-POST http://localhost:3000/reviews HTTP/1.1
-content-type: application/json
-
-{ 
-    "userId": "686ecbd3d8dd0e1f9235e9e4", 
-    "pizzaId": "68601b0c914598c7bb96b045", 
-    "rating": 4, 
-    "commentReview": "Great pizza!", 
-    "priceRating": 3 
-}
-
-
-// Update/PUT review by id
-###
-PUT http://localhost:3000/reviews/686edd0d36eac74bb7b56553 HTTP/1.1
-content-type: application/json
-
-{ 
-    "userId": "686ecbd3d8dd0e1f9235e9e4", 
-    "pizzaId": "68601b0c914598c7bb96b045", 
-    "rating": 5, 
-    "commentReview": "Even better now!", 
-    "priceRating": 4  
-}
-
-
-// Delete review by id
-###
-DELETE http://localhost:3000/reviews/686ed483bf55f33fee1a53c7 HTTP/1.1
-
-
-
-//FAVORITES SECTION
-//Get all favorites
+GET http://localhost:3000/pizzas HTTP/1.1
 ###
 GET http://localhost:3000/favorites HTTP/1.1
 
-//Get favorite by ID
+// GET review, pizza, and favorite by id
 ###
-GET http://localhost:3000/favorites/687847c5895110f7c435e94d HTTP/1.1
+GET http://localhost:3000/reviews/682fa967698ba839ac821ca4 HTTP/1.1
+###
+GET http://localhost:3000/reviews/682fa9b6698ba839ac821ca5 HTTP/1.1
+###
+GET http://localhost:3000/pizzas/682e9bdf4dd7fa13e4f39b2f HTTP/1.1
+###
+GET http://localhost:3000/pizzas/682fa88c698ba839ac821ca2 HTTP/1.1
+###
+GET http://localhost:3000/favorites/682fa8b6698ba839ac821ca3 HTTP/1.1
 
-//Create favorite
+// Create/POST Review
+###
+POST http://localhost:3000/reviews HTTP/1.1
+content-type: application/json
+Cookie: jwt={{your_jwt_token}}
+
+{
+    "userId": "682fda6c79e7bc4bb8da470a",
+    "pizzaId": "682fe6360da8fc4f6ed246bb",
+    "rating": 4,
+    "commentReview": "Great pepperoni pizza, but a bit greasy.",
+    "priceRating": 3
+}
+
+// Create/POST Pizza
+###
+POST http://localhost:3000/pizzas HTTP/1.1
+content-type: application/json
+Cookie: jwt={{your_jwt_token}}
+
+{
+    "name": "Pepperoni Supreme",
+    "brand": "Pizza Hut",
+    "description": "Classic pepperoni pizza with extra cheese"
+}
+
+// Create/POST Favorite
 ###
 POST http://localhost:3000/favorites HTTP/1.1
 content-type: application/json
+Cookie: jwt={{your_jwt_token}}
 
-{ 
-    "userId": "686ecbd3d8dd0e1f9235e9e4", 
-    "pizzaId": "68601b0c914598c7bb96b045", 
-    "reviewId": "68730c65c455119f0a88664c"
+{
+    "pizzaId": "682fe6360da8fc4f6ed246bb",
+    "reviewId": "682fa967698ba839ac821ca4"
 }
 
-// Update/PUT favorite by id
+// Update/PUT Review
 ###
-PUT http://localhost:3000/favorites/687847c5895110f7c435e94d HTTP/1.1
+PUT http://localhost:3000/reviews/68268f88423b889d6d6a2269 HTTP/1.1
+content-type: application/json
+Cookie: jwt={{your_jwt_token}}
+
+{
+    "userId": "682fda6c79e7bc4bb8da470a",
+    "pizzaId": "682fe6360da8fc4f6ed246bb",
+    "rating": 5,
+    "commentReview": "Updated: Best pizza ever!",
+    "priceRating": 4
+}
+
+// Update/PUT Pizza
+###
+PUT http://localhost:3000/pizzas/68268f88423b889d6d6a2269 HTTP/1.1
+content-type: application/json
+Cookie: jwt={{your_jwt_token}}
+
+{
+    "name": "Pepperoni Supreme",
+    "brand": "Pizza Hut",
+    "description": "Updated: Pepperoni pizza with extra cheese and olives"
+}
+
+// Delete/DELETE Review
+###
+DELETE http://localhost:3000/reviews/682fdb64776b03d3f5e10fa9 HTTP/1.1
+Cookie: jwt={{your_jwt_token}}
+
+// Delete/DELETE Pizza
+###
+DELETE http://localhost:3000/pizzas/682fda6c79e7bc4bb8da470a HTTP/1.1
+Cookie: jwt={{your_jwt_token}}
+
+// Delete/DELETE Favorite
+###
+DELETE http://localhost:3000/favorites/682fa8b6698ba839ac821ca3 HTTP/1.1
+Cookie: jwt={{your_jwt_token}}
+
+// User Authentication
+// Create user (optional, non-OAuth)
+###
+POST http://localhost:3000/users HTTP/1.1
 content-type: application/json
 
-{ 
-    "userId": "686ecbd3d8dd0e1f9235e9e4", 
-    "pizzaId": "68601b0c914598c7bb96b045", 
-    "reviewId": "68730c65c455119f0a88664c"
+{
+    "username": "testuser",
+    "email": "test@example.com"
 }
 
-// Delete review by id
+// Search users by name
 ###
-DELETE http://localhost:3000/favorites/687847c5895110f7c435e94d HTTP/1.1
+GET http://localhost:3000/users HTTP/1.1
+
+// Start GitHub login
+###
+GET http://localhost:3000/users/github HTTP/1.1
+
+// Logout
+###
+GET http://localhost:3000/users/logout HTTP/1.1
+Cookie: jwt={{your_jwt_token}}
+
+// PRODUCTION DEPLOY
+// Get all reviews, pizzas, and favorites
+###
+GET https://pizza-review-app.onrender.com/reviews HTTP/1.1
+###
+GET https://pizza-review-app.onrender.com/pizzas HTTP/1.1
+###
+GET https://pizza-review-app.onrender.com/favorites HTTP/1.1
+
+// Get review, pizza, and favorite by id
+###
+GET https://pizza-review-app.onrender.com/reviews/682fa967698ba839ac821ca4 HTTP/1.1
+###
+GET https://pizza-review-app.onrender.com/pizzas/682e9bdf4dd7fa13e4f39b2f HTTP/1.1
+###
+GET https://pizza-review-app.onrender.com/favorites/682fa8b6698ba839ac821ca3 HTTP/1.1
+
+// Create/POST Review
+###
+POST https://pizza-review-app.onrender.com/reviews HTTP/1.1
+content-type: application/json
+Cookie: jwt={{your_jwt_token}}
+
+{
+    "userId": "682fda6c79e7bc4bb8da470a",
+    "pizzaId": "682fe6360da8fc4f6ed246bb",
+    "rating": 4,
+    "commentReview": "Great pepperoni pizza, but a bit greasy.",
+    "priceRating": 3
+}
+
+// Create/POST Pizza
+###
+POST https://pizza-review-app.onrender.com/pizzas HTTP/1.1
+content-type: application/json
+Cookie: jwt={{your_jwt_token}}
+
+{
+    "name": "Pepperoni Supreme",
+    "brand": "Pizza Hut",
+    "description": "Classic pepperoni pizza with extra cheese"
+}
+
+// Create/POST Favorite
+###
+POST https://pizza-review-app.onrender.com/favorites HTTP/1.1
+content-type: application/json
+Cookie: jwt={{your_jwt_token}}
+
+{
+    "pizzaId": "682fe6360da8fc4f6ed246bb",
+    "reviewId": "682fa967698ba839ac821ca4"
+}
+
+// Update/PUT Review
+###
+PUT https://pizza-review-app.onrender.com/reviews/682fe2da4e9ffbe0bc7879a7 HTTP/1.1
+content-type: application/json
+Cookie: jwt={{your_jwt_token}}
+
+{
+    "userId": "682fda6c79e7bc4bb8da470a",
+    "pizzaId": "682fe6360da8fc4f6ed246bb",
+    "rating": 5,
+    "commentReview": "Updated: Best pizza ever!",
+    "priceRating": 4
+}
+
+// Update/PUT Pizza
+###
+PUT https://pizza-review-app.onrender.com/pizzas/682fe2a24e9ffbe0bc7879a6 HTTP/1.1
+content-type: application/json
+Cookie: jwt={{your_jwt_token}}
+
+{
+    "name": "Pepperoni Supreme",
+    "brand": "Pizza Hut",
+    "description": "Updated: Pepperoni pizza with extra cheese and olives"
+}
+
+// Delete/DELETE Review
+###
+DELETE https://pizza-review-app.onrender.com/reviews/682fe2da4e9ffbe0bc7879a7 HTTP/1.1
+Cookie: jwt={{your_jwt_token}}
+
+// Delete/DELETE Pizza
+###
+DELETE https://pizza-review-app.onrender.com/pizzas/682fe2a24e9ffbe0bc7879a6 HTTP/1.1
+Cookie: jwt={{your_jwt_token}}
+
+// Delete/DELETE Favorite
+###
+DELETE https://pizza-review-app.onrender.com/favorites/682fa8b6698ba839ac821ca3 HTTP/1.1
+Cookie: jwt={{your_jwt_token}}
+
+// User Authentication
+// Create user (optional, non-OAuth)
+###
+POST https://pizza-review-app.onrender.com/users HTTP/1.1
+content-type: application/json
+
+{
+    "username": "produser",
+    "email": "prod@example.com"
+}
+
+// Search users by name
+###
+GET https://pizza-review-app.onrender.com/users HTTP/1.1
+
+// Start GitHub login
+###
+GET https://pizza-review-app.onrender.com/users/github HTTP/1.1
+
+// Logout
+###
+GET https://pizza-review-app.onrender.com/users/logout HTTP/1.1
+Cookie: jwt={{your_jwt_token}}

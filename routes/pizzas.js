@@ -4,11 +4,11 @@ const pizzasController = require('../controllers/pizzas');
 const { pizzaValidation } = require('../validators/pizzasValidator');
 const { verifyToken } = require('../validators/usersValidator');
 
-// Get pizzas based on ALL or by id
+// Get pizzas
 router.get('/', pizzasController.getAllPizzas);
 router.get('/:id', pizzasController.getPizzaById);
 
-// POST, PUT, DELETE routes
+// CRUD routes with validation and authentication
 router.post('/', verifyToken, pizzaValidation, pizzasController.createPizza);
 router.put('/:id', verifyToken, pizzaValidation, pizzasController.updatePizza);
 router.delete('/:id', verifyToken, pizzasController.deletePizza);

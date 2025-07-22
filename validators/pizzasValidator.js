@@ -4,9 +4,7 @@ const pizzaValidation = (req, res, next) => {
   const validationRules = {
     name: 'required|string',
     brand: 'required|string',
-    description: 'required|string',
-    createdDate: 'required|date',
-    updatedDate: 'required|date'
+    description: 'required|string'
   };
   validator(req.body, validationRules, {}, (err, status) => {
     if (!status) {
