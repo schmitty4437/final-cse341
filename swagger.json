@@ -5,7 +5,7 @@
     "description": "Use GitHub login to manage pizza reviews and favorites",
     "version": "1.0.0"
   },
-  "host": "pizza-review-app.onrender.com",
+  "host": "final-cse341.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
